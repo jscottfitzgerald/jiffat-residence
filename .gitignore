@@ -1,0 +1,24 @@
+# PowerPoint files (not needed for web hosting)
+*.pptx
+*.ppt
+
+# Text guide files (optional - keep locally for reference)
+PowerPoint-Integration-Guide.txt
+PowerPoint-Template-Structure.txt
+Testing-Customization-Guide.txt
+
+# Visual Studio Code workspace files
+*.code-workspace
+.vscode/
+
+# Windows system files
+Thumbs.db
+desktop.ini
+
+# macOS system files
+.DS_Store
+
+# Backup files
+*~
+*.bak
+*-Copy.html

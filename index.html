@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Future Together</title>
+    <title>Our Life Together</title>
     <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -1315,6 +1315,262 @@
             font-weight: 600;
         }
 
+        /* Our Home Gallery Styles */
+        .room-galleries {
+            margin-top: 30px;
+        }
+
+        .room-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .room-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .room-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .image-count {
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f0f0f0;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            padding: 15px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .image-overlay {
+            transform: translateY(0);
+        }
+
+        .image-caption {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .image-meta {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+
+        .empty-gallery {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-gallery-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .empty-gallery p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .add-instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .lightbox-caption {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .lightbox-meta {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .lightbox-close:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .refresh-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-family: 'Aptos', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(6, 214, 160, 0.3);
+        }
+
+        .loading-message {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .google-drive-setup {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .google-drive-setup h3 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+
+        .google-drive-setup ol {
+            margin-left: 20px;
+            line-height: 1.8;
+            color: #856404;
+        }
+
+        .google-drive-setup code {
+            background: #fff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            color: #d63384;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .timeline-container {
@@ -1352,27 +1608,13 @@
     <!-- Main Interface -->
     <div class="main-interface" id="mainInterface">
         <header>
-            <h1>Our Future Together</h1>
-            <p class="subtitle">Click on any milestone to explore our journey</p>
+            <h1>Our Life Together</h1>
+            <p class="subtitle">Choose a section to explore our journey together</p>
         </header>
 
-        <!-- Interactive Timeline Wheel -->
-        <div class="timeline-container">
-            <div class="timeline-wheel" id="timelineWheel">
-                <!-- Milestones will be generated by JavaScript -->
-            </div>
-            
-            <div class="center-display" id="centerDisplay">
-                <div class="welcome-message">
-                    <h2>Welcome to Our Journey</h2>
-                    <p>Click on any milestone around the wheel to discover our future dreams together</p>
-                </div>
-            </div>
-        </div>
-
         <!-- Navigation Controls -->
-        <div class="controls">
-            <button class="nav-btn" onclick="showSection('timeline')">📆 Timeline</button>
+        <div class="controls" style="margin-top: 60px;">
+            <button class="nav-btn" onclick="showSection('memoryLane')">📆 Memory Lane</button>
             <button class="nav-btn" onclick="showSection('map')">🛫 Destinations</button>
             <button class="nav-btn" onclick="showSection('home')">🏡 Our Home</button>
             <button class="nav-btn" onclick="showSection('goals')">🥅 Our Goals</button>
@@ -1381,6 +1623,7 @@
             <button class="nav-btn" onclick="showSection('netWorth')">💰 Net Worth</button>
             <button class="nav-btn" onclick="showSection('jobTracker')">💼 Job Tracker</button>
             <button class="nav-btn" onclick="showSection('dailyPuzzle')">🧩 Daily Puzzle</button>
+            <button class="nav-btn" onclick="showSection('calendar')">📅 Calendar</button>
         </div>
 
         <!-- Section Displays -->
@@ -1412,26 +1655,34 @@
 
             <!-- Home Section -->
             <div class="section" id="homeSection">
-                <h2>Our Dream Home</h2>
-                <p>Where we'll build our life together</p>
+                <h2>🏡 Our Dream Home</h2>
+                <p>Our shared vision board - collecting inspiration for the home we'll build together</p>
                 
-                <div class="map-container">
-                    <div class="destination" onclick="showRoom('kitchen')">
-                        <h3>🍳 The Kitchen</h3>
-                        <p>Where we'll cook Sunday breakfasts and share morning coffee</p>
+                <!-- Setup Instructions (remove after setup) -->
+                <div class="google-drive-setup" id="homeSetupInstructions">
+                    <h3>🔧 Quick Setup Required</h3>
+                    <ol style="font-size: 0.95rem;">
+                        <li><strong>Create</strong> a <code>home-images.json</code> file in your GitHub repository</li>
+                        <li><strong>Upload images</strong> to Google Drive folders (Kitchen, Garden, Living Room, Study)</li>
+                        <li><strong>Add image IDs</strong> to the JSON file</li>
+                        <li><strong>Update the JSON URL</strong> in the JavaScript code below</li>
+                    </ol>
+                    <p style="margin-top: 15px; font-weight: bold;">📖 See <code>OUR-HOME-SETUP.md</code> for complete instructions!</p>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div style="font-size: 0.9rem; color: #666;">
+                        💡 <strong>Tip:</strong> Anyone can add images by editing the JSON file on GitHub
                     </div>
-                    <div class="destination" onclick="showRoom('garden')">
-                        <h3>🌿 The Garden</h3>
-                        <p>Our peaceful retreat with flowers, herbs, and space for morning yoga</p>
-                    </div>
-                    <div class="destination" onclick="showRoom('living')">
-                        <h3>📺 The Living Room</h3>
-                        <p>Cozy movie nights, board games, and our collection of favorite books</p>
-                    </div>
-                    <div class="destination" onclick="showRoom('study')">
-                        <h3>📚 The Study</h3>
-                        <p>Our creative space for projects, reading nooks, and planning adventures</p>
-                    </div>
+                    <button class="refresh-btn" onclick="loadHomeGallery()">
+                        <span>🔄</span>
+                        <span>Refresh Gallery</span>
+                    </button>
+                </div>
+                
+                <div class="room-galleries" id="roomGalleries">
+                    <!-- Galleries will be loaded here -->
+                    <div class="loading-message">Loading dream home gallery...</div>
                 </div>
             </div>
 
@@ -1444,41 +1695,141 @@
                     <div class="goal-card">
                         <div class="goal-icon">🎓</div>
                         <div class="goal-title">Personal Growth</div>
-                        <p>Supporting each other's dreams, learning new skills, and becoming the best versions of ourselves</p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 60%"></div>
+                        <p style="margin-bottom: 20px;">Supporting each other's dreams, learning new skills, and becoming the best versions of ourselves</p>
+                        
+                        <!-- Sub-goals checklist -->
+                        <div class="sub-goals" style="text-align: left; margin: 20px 0; font-size: 0.9rem;">
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('personal', this)" style="margin-right: 10px; cursor: pointer;">
+                                Learn a new language together
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('personal', this)" style="margin-right: 10px; cursor: pointer;">
+                                Read 12 books this year
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('personal', this)" style="margin-right: 10px; cursor: pointer;">
+                                Take a cooking class together
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('personal', this)" style="margin-right: 10px; cursor: pointer;">
+                                Learn to play an instrument
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('personal', this)" style="margin-right: 10px; cursor: pointer;">
+                                Get a professional certification
+                            </label>
                         </div>
-                        <p>60% Complete</p>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="personal-progress" style="width: 0%"></div>
+                        </div>
+                        <p><span id="personal-percent">0</span>% Complete</p>
                     </div>
                     
                     <div class="goal-card">
                         <div class="goal-icon">💰</div>
                         <div class="goal-title">Financial Freedom</div>
-                        <p>Smart saving, investments, and creating a secure future for our adventures</p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 45%"></div>
+                        <p style="margin-bottom: 20px;">Smart saving, investments, and creating a secure future for our adventures</p>
+                        
+                        <!-- Sub-goals checklist -->
+                        <div class="sub-goals" style="text-align: left; margin: 20px 0; font-size: 0.9rem;">
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('financial', this)" style="margin-right: 10px; cursor: pointer;">
+                                Create emergency fund (3-6 months expenses)
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('financial', this)" style="margin-right: 10px; cursor: pointer;">
+                                Max out ISA contributions
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('financial', this)" style="margin-right: 10px; cursor: pointer;">
+                                Start investing in stocks/shares
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('financial', this)" style="margin-right: 10px; cursor: pointer;">
+                                Save deposit for home
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('financial', this)" style="margin-right: 10px; cursor: pointer;">
+                                Pay off all debts
+                            </label>
                         </div>
-                        <p>45% Complete</p>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="financial-progress" style="width: 0%"></div>
+                        </div>
+                        <p><span id="financial-percent">0</span>% Complete</p>
                     </div>
                     
                     <div class="goal-card">
                         <div class="goal-icon">❤️</div>
                         <div class="goal-title">Strong Relationship</div>
-                        <p>Communication, date nights, and keeping our love strong through life's journey</p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 85%"></div>
+                        <p style="margin-bottom: 20px;">Communication, date nights, and keeping our love strong through life's journey</p>
+                        
+                        <!-- Sub-goals checklist -->
+                        <div class="sub-goals" style="text-align: left; margin: 20px 0; font-size: 0.9rem;">
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('relationship', this)" style="margin-right: 10px; cursor: pointer;">
+                                Weekly date nights
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('relationship', this)" style="margin-right: 10px; cursor: pointer;">
+                                Daily gratitude sharing
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('relationship', this)" style="margin-right: 10px; cursor: pointer;">
+                                Plan weekend getaways quarterly
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('relationship', this)" style="margin-right: 10px; cursor: pointer;">
+                                Try new activities together monthly
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('relationship', this)" style="margin-right: 10px; cursor: pointer;">
+                                Practice active listening daily
+                            </label>
                         </div>
-                        <p>85% Complete</p>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="relationship-progress" style="width: 0%"></div>
+                        </div>
+                        <p><span id="relationship-percent">0</span>% Complete</p>
                     </div>
                     
                     <div class="goal-card">
                         <div class="goal-icon">🌍</div>
                         <div class="goal-title">Adventure & Travel</div>
-                        <p>Exploring new places, trying new foods, and creating unforgettable memories</p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 30%"></div>
+                        <p style="margin-bottom: 20px;">Exploring new places, trying new foods, and creating unforgettable memories</p>
+                        
+                        <!-- Sub-goals checklist -->
+                        <div class="sub-goals" style="text-align: left; margin: 20px 0; font-size: 0.9rem;">
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('adventure', this)" style="margin-right: 10px; cursor: pointer;">
+                                Visit Paris, France
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('adventure', this)" style="margin-right: 10px; cursor: pointer;">
+                                Explore Tokyo, Japan
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('adventure', this)" style="margin-right: 10px; cursor: pointer;">
+                                Relax in the Maldives
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('adventure', this)" style="margin-right: 10px; cursor: pointer;">
+                                Tour Italy together
+                            </label>
+                            <label style="display: block; margin: 8px 0; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" onchange="updateGoalProgress('adventure', this)" style="margin-right: 10px; cursor: pointer;">
+                                Try 50 new restaurants
+                            </label>
                         </div>
-                        <p>30% Complete</p>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="adventure-progress" style="width: 0%"></div>
+                        </div>
+                        <p><span id="adventure-percent">0</span>% Complete</p>
                     </div>
                 </div>
             </div>
@@ -1618,38 +1969,23 @@
                 <h2>💼 Job Tracker</h2>
                 <p>Tracking our career progress and professional goals together</p>
                 
-                <!-- Job Opportunities Section -->
+                <!-- Job Opportunities Spreadsheet -->
                 <div class="job-opportunities">
                     <h3>🎯 Job Opportunities for You</h3>
-                    <p style="margin-bottom: 20px; color: #666;">Positions I've found that might be perfect for you!</p>
-                    <div class="opportunities-list" id="opportunitiesList">
-                        <!-- Job opportunities will be loaded here -->
-                    </div>
-                </div>
-                
-                <div class="job-tracker-header">
-                    <div class="job-stats">
-                        <div class="job-stat">
-                            <span class="job-number" id="totalJobs">0</span>
-                            <span class="job-label">Total Jobs</span>
-                        </div>
-                        <div class="job-stat">
-                            <span class="job-number" id="totalIncome">£0</span>
-                            <span class="job-label">Total Income</span>
-                        </div>
-                        <div class="job-stat">
-                            <span class="job-number" id="avgSalary">£0</span>
-                            <span class="job-label">Average Salary</span>
+                    <p style="margin-bottom: 20px; color: #666;">Live spreadsheet with positions I've found that might be perfect for you!</p>
+                    
+                    <!-- Embedded Spreadsheet -->
+                    <div style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 30px;">
+                        <div id="spreadsheetContainer" style="width: 100%; min-height: 500px; border: 2px solid #eee; border-radius: 10px; overflow: hidden;">
+                            <!-- Replace the src URL below with your Google Sheets or Excel Online embed link -->
+                            <iframe 
+                                src="https://docs.google.com/spreadsheets/d/1Y5MOVBcJ1lxl9D7ia6Z4VCBYtq7UD2HUie_0MawZv5o/edit?usp=drive_link"
+                                style="width: 100%; height: 600px; border: none;"
+                                frameborder="0"
+                                allowfullscreen>
+                            </iframe>
                         </div>
                     </div>
-                    <div class="job-actions">
-                        <button class="nav-btn" onclick="showAddJobForm()">Add Job</button>
-                        <button class="nav-btn" onclick="exportJobData()">Export Data</button>
-                    </div>
-                </div>
-                
-                <div class="jobs-list" id="jobsList">
-                    <!-- Jobs will be populated by JavaScript -->
                 </div>
             </div>
 
@@ -1696,6 +2032,32 @@
                             <div class="puzzle-stat-label">Points</div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Calendar Section -->
+            <div class="section" id="calendarSection">
+                <h2>📅 Our Calendar</h2>
+                <p>Plan our time together, mark important dates, and coordinate our schedules</p>
+                
+                <div style="background: white; padding: 20px; border-radius: 15px; margin-top: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <!-- Embedded Google Calendar -->
+                    <iframe 
+                        src="https://calendar.google.com/calendar/embed?src=jiffatresidence%40gmail.com&ctz=Europe%2FLondon" 
+                        style="border: 0; width: 100%; height: 600px; border-radius: 10px;" 
+                        frameborder="0" 
+                        scrolling="no">
+                    </iframe>
+                </div>
+                
+                <!-- Help text below calendar -->
+                <div style="margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; text-align: center;">
+                    <p style="color: #666; margin-bottom: 10px;">
+                        <strong>💡 Not seeing your calendar?</strong>
+                    </p>
+                    <p style="color: #999; font-size: 0.9rem;">
+                        Make sure you've replaced "YOUR-GOOGLE-CALENDAR-EMBED-URL-HERE" with your actual Google Calendar embed URL from Settings → Integrate Calendar
+                    </p>
                 </div>
             </div>
 
@@ -1862,7 +2224,7 @@
         <!-- Memory Lane -->
         <div class="section" id="memorySection" style="display: block;">
             <h2>Memory Lane</h2>
-            <p>Our journey so far, and the beautiful memories we've created</p>
+            <p>Just some of the hundreds of beautiful memories we've created</p>
             
             <div class="memory-slider">
                 <div class="memory-slide active">
@@ -1886,6 +2248,18 @@
                     <button class="slider-btn" onclick="prevMemory()">← Previous</button>
                     <button class="slider-btn" onclick="nextMemory()">Next →</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Viewer for Home Gallery -->
+    <div class="lightbox" id="imageLightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="lightboxImage" class="lightbox-image" src="" alt="">
+            <div class="lightbox-info">
+                <div class="lightbox-caption" id="lightboxCaption"></div>
+                <div class="lightbox-meta" id="lightboxMeta"></div>
             </div>
         </div>
     </div>
@@ -2023,15 +2397,14 @@
             // Hide all sections first
             sections.forEach(sec => sec.classList.remove('active'));
             
-            if (section === 'timeline') {
+            // Hide all forms
+            document.getElementById('addAccountForm')?.classList.remove('active');
+            document.getElementById('addNewsletterForm')?.classList.remove('active');
+            document.getElementById('addJobForm')?.classList.remove('active');
+            
+            if (section === 'memoryLane') {
                 sectionsContainer.style.display = 'none';
                 document.getElementById('memorySection').style.display = 'block';
-                document.getElementById('centerDisplay').innerHTML = `
-                    <div class="welcome-message">
-                        <h2>Welcome to Our Journey</h2>
-                        <p>Click on any milestone around the wheel to discover our future dreams together</p>
-                    </div>
-                `;
             } else {
                 sectionsContainer.style.display = 'block';
                 document.getElementById('memorySection').style.display = 'none';
@@ -2041,6 +2414,7 @@
                     document.getElementById('mapSection').classList.add('active');
                 } else if (section === 'home') {
                     document.getElementById('homeSection').classList.add('active');
+                    loadHomeGallery(); // Load the gallery when section is shown
                 } else if (section === 'goals') {
                     document.getElementById('goalsSection').classList.add('active');
                     animateProgressBars();
@@ -2060,6 +2434,8 @@
                 } else if (section === 'jackInTheBox') {
                     document.getElementById('jackInTheBoxSection').classList.add('active');
                     loadJackNewsletters();
+                } else if (section === 'calendar') {
+                    document.getElementById('calendarSection').classList.add('active');
                 }
             }
         }
@@ -3173,6 +3549,255 @@
             document.getElementById('puzzlesSolved').textContent = puzzleData.solved;
             document.getElementById('puzzleScore').textContent = puzzleData.score;
         }
+
+        // Interactive Goals functionality
+        function updateGoalProgress(goalId, checkbox) {
+            // Get all checkboxes for this goal
+            const goalCard = checkbox.closest('.goal-card');
+            const checkboxes = goalCard.querySelectorAll('input[type="checkbox"]');
+            
+            // Count checked items
+            const total = checkboxes.length;
+            const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+            
+            // Calculate percentage
+            const percentage = Math.round((checked / total) * 100);
+            
+            // Update progress bar
+            const progressBar = document.getElementById(goalId + '-progress');
+            const percentText = document.getElementById(goalId + '-percent');
+            
+            if (progressBar && percentText) {
+                progressBar.style.width = percentage + '%';
+                percentText.textContent = percentage;
+            }
+            
+            // Save to localStorage
+            const goalData = JSON.parse(localStorage.getItem('goalProgress') || '{}');
+            goalData[goalId] = {
+                checked: Array.from(checkboxes).map(cb => cb.checked),
+                percentage: percentage
+            };
+            localStorage.setItem('goalProgress', JSON.stringify(goalData));
+        }
+
+        // Load saved progress on page load
+        function loadGoalProgress() {
+            const goalData = JSON.parse(localStorage.getItem('goalProgress') || '{}');
+            
+            Object.keys(goalData).forEach(goalId => {
+                const data = goalData[goalId];
+                const progressBar = document.getElementById(goalId + '-progress');
+                const percentText = document.getElementById(goalId + '-percent');
+                
+                if (progressBar && percentText) {
+                    progressBar.style.width = data.percentage + '%';
+                    percentText.textContent = data.percentage;
+                    
+                    // Restore checkbox states
+                    const section = document.getElementById('goalsSection');
+                    if (section) {
+                        const goalCards = section.querySelectorAll('.goal-card');
+                        goalCards.forEach(card => {
+                            const cardProgressBar = card.querySelector(`#${goalId}-progress`);
+                            if (cardProgressBar) {
+                                const checkboxes = card.querySelectorAll('input[type="checkbox"]');
+                                data.checked.forEach((isChecked, index) => {
+                                    if (checkboxes[index]) {
+                                        checkboxes[index].checked = isChecked;
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        // Call loadGoalProgress when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').style.opacity = 0;
+                setTimeout(function() {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                    document.getElementById('mainInterface').style.opacity = 1;
+                }, 500);
+            }, 2000);
+
+            createTimeline();
+            setupProgressBars();
+            loadGoalProgress(); // Load saved goal progress
+        });
+
+        // Our Home Gallery Configuration
+        const HOME_CONFIG = {
+            // IMPORTANT: Replace this with your actual GitHub raw JSON URL
+            jsonUrl: 'https://raw.githubusercontent.com/jscottfitzgerald/jiffat-residence/main/home-images.json',
+            
+            rooms: {
+                kitchen: { name: 'The Kitchen', icon: '🍳', emoji: '🍳' },
+                garden: { name: 'The Garden', icon: '🌿', emoji: '🌿' },
+                living: { name: 'The Living Room', icon: '📺', emoji: '📺' },
+                study: { name: 'The Study', icon: '📚', emoji: '📚' }
+            }
+        };
+
+        // Load and display the home gallery
+        async function loadHomeGallery() {
+            const container = document.getElementById('roomGalleries');
+            
+            try {
+                // Show loading state
+                container.innerHTML = '<div class="loading-message">Loading your dream home ideas... 🏠</div>';
+                
+                // Fetch the JSON configuration
+                const response = await fetch(HOME_CONFIG.jsonUrl);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load home images configuration');
+                }
+                
+                const data = await response.json();
+                
+                // Clear container
+                container.innerHTML = '';
+                
+                // Create gallery for each room
+                for (const [roomKey, roomData] of Object.entries(HOME_CONFIG.rooms)) {
+                    const images = data[roomKey] || [];
+                    const roomSection = createRoomGallery(roomKey, roomData, images);
+                    container.appendChild(roomSection);
+                }
+                
+            } catch (error) {
+                console.error('Error loading home gallery:', error);
+                container.innerHTML = `
+                    <div class="empty-gallery">
+                        <div class="empty-gallery-icon">⚠️</div>
+                        <h3>Unable to Load Gallery</h3>
+                        <p>Make sure you've created the <code>home-images.json</code> file and updated the URL in the code.</p>
+                        <div class="add-instructions">
+                            <strong>Quick Fix:</strong><br>
+                            1. Create <code>home-images.json</code> in your GitHub repository<br>
+                            2. Update <code>HOME_CONFIG.jsonUrl</code> with your raw GitHub URL<br>
+                            3. See <code>OUR-HOME-SETUP.md</code> for detailed instructions
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Create a room gallery section
+        function createRoomGallery(roomKey, roomData, images) {
+            const section = document.createElement('div');
+            section.className = 'room-section';
+            section.id = `room-${roomKey}`;
+            
+            // Create header
+            const header = document.createElement('div');
+            header.className = 'room-header';
+            header.innerHTML = `
+                <div class="room-title">
+                    <span>${roomData.emoji}</span>
+                    <span>${roomData.name}</span>
+                </div>
+                <div class="image-count">${images.length} ${images.length === 1 ? 'idea' : 'ideas'}</div>
+            `;
+            section.appendChild(header);
+            
+            // Create gallery or empty state
+            if (images.length === 0) {
+                const emptyState = document.createElement('div');
+                emptyState.className = 'empty-gallery';
+                emptyState.innerHTML = `
+                    <div class="empty-gallery-icon">${roomData.emoji}</div>
+                    <p>No ${roomData.name.toLowerCase()} ideas yet</p>
+                    <div class="add-instructions">
+                        <strong>To add images:</strong><br>
+                        1. Upload to Google Drive → ${roomData.name} folder<br>
+                        2. Get the file ID from the share link<br>
+                        3. Add to <code>home-images.json</code> under "${roomKey}"<br>
+                        4. Refresh this page
+                    </div>
+                `;
+                section.appendChild(emptyState);
+            } else {
+                const gallery = document.createElement('div');
+                gallery.className = 'gallery-grid';
+                
+                images.forEach(image => {
+                    const item = createGalleryItem(image, roomData.name);
+                    gallery.appendChild(item);
+                });
+                
+                section.appendChild(gallery);
+            }
+            
+            return section;
+        }
+
+        // Create a single gallery item
+        function createGalleryItem(image, roomName) {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            
+            // Convert Google Drive ID to direct image URL
+            const imageUrl = `https://drive.google.com/uc?export=view&id=${image.id}`;
+            
+            item.innerHTML = `
+                <img src="${imageUrl}" 
+                     alt="${image.caption}" 
+                     loading="lazy"
+                     onerror="this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;background:#f0f0f0;color:#999;\\'>📷<br>Failed to load</div>'">
+                <div class="image-overlay">
+                    <div class="image-caption">${image.caption}</div>
+                    <div class="image-meta">
+                        Added by ${image.addedBy} ${image.date ? '• ' + formatSimpleDate(image.date) : ''}
+                    </div>
+                </div>
+            `;
+            
+            // Click to open lightbox
+            item.addEventListener('click', () => {
+                openLightbox(imageUrl, image, roomName);
+            });
+            
+            return item;
+        }
+
+        // Open image in lightbox
+        function openLightbox(imageUrl, imageData, roomName) {
+            const lightbox = document.getElementById('imageLightbox');
+            const image = document.getElementById('lightboxImage');
+            const caption = document.getElementById('lightboxCaption');
+            const meta = document.getElementById('lightboxMeta');
+            
+            image.src = imageUrl;
+            caption.textContent = imageData.caption;
+            meta.innerHTML = `
+                <strong>${roomName}</strong> • 
+                Added by ${imageData.addedBy}
+                ${imageData.date ? ' • ' + formatDate(imageData.date) : ''}
+                ${imageData.notes ? '<br><em>' + imageData.notes + '</em>' : ''}
+            `;
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        // Close lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('imageLightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
 
         // Jack In The Box Newsletter functionality
         const JACK_CONFIG = {

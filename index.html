@@ -3742,7 +3742,7 @@
             item.className = 'gallery-item';
             
             // Convert Google Drive ID to direct image URL
-            const imageUrl = `https://drive.google.com/uc?export=view&id=${image.id}`;
+           const imageUrl = `https://drive.google.com/thumbnail?id=${image.id}&sz=w1000`;
             
             item.innerHTML = `
                 <img src="${imageUrl}" 
@@ -3863,4 +3863,5 @@
     </script>
 </body>
 </html>
+
 
